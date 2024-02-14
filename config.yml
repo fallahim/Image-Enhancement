@@ -1,0 +1,97 @@
+# config.yml
+Enhancement:
+  output_path: path/to/save/enhanced_image.jpg
+
+  using_methods: [_enlarge_image,  _apply_lowpass_filter,_gray_scale, _noise_reduction, _resize ] 
+
+  enhancement_methods:
+    
+
+    - name : _brightness_adjustmnet
+      params:
+        target_brightness: 128
+        adjustment_factor: 1.5 
+        image_save: False
+
+    - name : _histogram_equalization
+      params: 
+        image_save: False
+
+    - name: _unsharp_masking
+      params:
+        image_save: False
+        kernel_size: [0, 0] #(0,0) is kernel size and it means the kernel size well be automatically detemine bi std:3
+        std: 3 
+        orginal_image_weight: 1.5
+        blurred_weight: -0.5
+        scalar: 0 #scalar added to the resul
+
+    - name: _high_pass_filter
+      params: 
+        image_save: False
+        orginal_image_weight: 1
+        laplacian_weight: .5
+        scalar: 0 #scalar added to the resul
+
+    - name: _contrast_stretching
+      params: 
+        image_save: False
+        threshold: 20
+        
+    - name: _noise_reduction
+      params: 
+        image_save: False
+        noise_reduction_method: 'original'
+        gaussian_blur_sigma: 1.5
+        median_blur_kernel_size: 3
+        bilateral_d: 9
+        bilateral_sigma_color: 75
+        bilateral_sigma_space: 75
+        morphological_kernel_size: 3
+        adaptive_threshold_block_size: 11  
+        adaptive_threshold_c: 2
+    
+    - name: _enlarge_image
+      params:
+        image_save: False 
+        scale_factor: 2
+                     
+    - name: _super_resolution
+      params:
+        image_save: True
+        num_inference_steps: 50
+        eta: 1
+    - name: _gray_scale
+      params:
+         image_save: False
+    - name: _binarization
+      params:
+        image_save: True
+    - name: _aligner
+      params: 
+        image_save: False
+    - name: _bg_remover
+      params: 
+        image_save: False
+    
+    - name: _eadg_smoother
+      params:
+        image_save: False
+        kernel_size: 2
+
+    - name: _apply_lowpass_filter
+      params:
+        image_save: False
+
+        sigma: 1    
+    - name: _saturation
+      params:
+        image_save: False
+    - name: _contrast_enhancement
+      params: 
+        image_save: True
+
+        sigma: .5    
+    - name: _resize
+      params:
+        image_save: True
